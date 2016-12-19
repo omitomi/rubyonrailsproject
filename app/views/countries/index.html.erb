@@ -1,0 +1,26 @@
+<h1>Список стран</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @countries.each do |country| %>
+      <tr>
+        <td><%= country.name %></td>
+        <td><%= link_to 'Редактировать', edit_country_path(country) %></td>
+        <td><%= link_to 'Удалить', country, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Создать страну', new_country_path %>
