@@ -8,7 +8,7 @@
   </div>
   <div class="span8">
     <h3>Добавленные книги</h3>
-    <% if @feed_items.any? %>
+    <% if @feed_items.count > 0 && @feed_items.any? %>
         <ol class="microposts">
           <%= render partial: 'shared/feed_item', collection: @feed_items %>
         </ol>
@@ -17,7 +17,7 @@
   </div>
   <div class="span8">
       <h3>Оставленные отзывы</h3>
-      <% if @comment_user.any? %>
+      <% if @comment_user.count > 0 && @comment_user.any? %>
           <ol class="microposts">
             <%= render partial: 'shared/comment_user', collection: @comment_user %>
           </ol>
