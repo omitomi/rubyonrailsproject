@@ -7,7 +7,6 @@ class Book < ActiveRecord::Base
   belongs_to :author
   belongs_to :type
   belongs_to :linearity
-  belongs_to :user
   default_scope -> { order('name ASC') }
   validates :name,  presence: true
   #attr_accessible :name, :author_id, :type_id, :linearity_id

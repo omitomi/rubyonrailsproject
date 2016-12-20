@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   	has_many :comments
   	has_many :books, through: :comments
-  	has_many :books
 	before_create :create_remember_token
 	before_save { self.email = email.downcase } #принудит Rails переводить в нижний регистр email атрибут перед сохранением пользователя в базу данных
 	validates :name,  presence: true, length: { maximum: 50 }
