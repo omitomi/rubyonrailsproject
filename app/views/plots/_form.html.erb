@@ -1,0 +1,11 @@
+<%= form_for(@plot) do |f| %>
+  <%= render 'shared/error_messages', object: @plot %>
+
+  <div class="field">
+    <%= f.label :name, "Название" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Сохранить" %>
+  </div>
+<% end %>

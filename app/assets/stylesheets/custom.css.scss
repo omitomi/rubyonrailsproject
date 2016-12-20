@@ -51,6 +51,7 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  text-align: justify;
 }
 
 /* header */
@@ -218,4 +219,69 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+#author_biography
+{
+  min-height: 250px;
+}
+.input-mini
+{
+  min-width: 100px;
+}
+
+/*кнопка */
+input {
+  color: #fff; /* цвет текста */
+  text-decoration: none; /* убирать подчёркивание у ссылок */
+  user-select: none; /* убирать выделение текста */
+  background: rgb(212,75,56); /* фон кнопки */
+  padding: .7em 1.5em; /* отступ от текста */
+  outline: none; /* убирать контур в Mozilla */
+}
+
+input:hover { background: rgb(232,95,76); } /* при наведении курсора мышки */
+input:active { background: rgb(152,15,0); } /* при нажатии */
+.layer1 {
+  background-color: #fc0; /* Цвет фона слоя */
+  padding: 5px; /* Поля вокруг текста */
+  float: left; /* Обтекание по правому краю */
+  width: 200px; /* Ширина слоя */
+}
+
+.clear {
+  clear: left; /* Отмена обтекания */
+}
+
+table {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  border-collapse: collapse;
+  color: #686461;
+}
+caption {
+  padding: 10px;
+  color: white;
+  background: #8FD4C1;
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+}
+th {
+  border-bottom: 3px solid #B9B29F;
+  padding: 10px;
+  text-align: left;
+}
+td {
+  padding: 10px;
+}
+tr:nth-child(odd) {
+  background: white;
+}
+tr:nth-child(even) {
+  background: #E8E6D1;
+}
+
+hr {
+  border: none; /* Убираем границу */
+  background-color: #a13380; /* Цвет линии */
+  height: 0.5px; /* Толщина линии */
 }

@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <strong><%= @book.name %></strong>
+</h1>
+<p>
+  <strong>Автор: </strong>
+  <%= @book.author.name %>
+</p>
+<p>
+  <strong>Категория: </strong>
+  <%= @book.type.name %>
+</p>
+<p>
+  <strong>Жанры: </strong>
+</p>
+<% @book.genres.each do |g| %>
+    <p> <%= g.name %> </p>
+<% end %>
+<p>
+<strong>Места действия: </strong>
+</p>
+<% @book.scene_of_actions.each do |g| %>
+    <p> <%= g.name %> </p>
+<% end %>
+<p>
+<p>
+  <strong>Линейность сюжета: </strong>
+  <%= @book.linearity.name %>
+</p>
+  <strong>Сюжетные ходы: </strong>
+</p>
+<% @book.plots.each do |g| %>
+    <p> <%= g.name %> </p>
+<% end %>
+<p>
+  <strong>Аннотация: </strong><%= @book.abstract %>
+</p>
+
+
+<% if current_user?(@book.user_id) || current_user.admin? %>
+    <td><%= link_to 'Редактировать', edit_book_path(@book) %></td> |
+<% end %>
+<%= link_to 'Назад', books_path %>
+<% if signed_in? %>
+    <div class="row">
+      <div class="main">
+         <div class="UserIcon">
+              <h4>
+                  <%= current_user.name %>
+              </h4>
+              <%= link_to gravatar_for(current_user), current_user %>
+        </div>
+        <div class="AddComments">
+                <h2>Добавить комментарий:</h2>
+                <%= form_for([@book, @book.comments.build]) do |f| %>
+                    <p>
+                      <%= f.text_area :body %>
+                    </p>
+                    <p >
+                      <%= f.submit "Добавить"%>
+                    </p>
+                <% end %>
+        </div>
+      </div>
+      <div class="span8">
+        <h3>Отзывы</h3>
+    <% if @book.comments.any? %>
+            <ol class="microposts">
+              <li id="comments">
+                <% @book.comments.each do |comment| %>
+                    <% if comment.user_id %>
+                        <%= link_to gravatar_for(User.find(comment.user_id)), User.find(comment.user_id) %>
+                        <span class="user">
+                            <%= link_to User.find(comment.user_id).name, User.find(comment.user_id) %>
+                        </span>
+                                <span class="content"><%= comment.body %></span>
+                    <span class="timestamp">
+                      Posted <%= time_ago_in_words(comment.created_at) %> ago.
+                    </span>
+                    <% if current_user?(User.find(comment.user_id)) %>
+                    <%= link_to "delete", comment, method: :delete, data: { confirm: "Вы уверены?" } %>
+                    <% end %>
+                    <% end %>
+                <% end %>
+              </li>
+            </ol>
+    <% end %>
+      </div>
+    </div>
+<% else %>
+    <div class="center hero-unit">
+      <%= link_to "Зарегистрируйтесь, чтобы посмотреть отзывы!", signup_path %>
+    </div>
+<% end %>

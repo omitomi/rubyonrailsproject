@@ -1,0 +1,45 @@
+<%= form_for(@book) do |f| %>
+  <%= render 'shared/error_messages', object: @book %>
+
+  <div class="field">
+    <%= f.label :name, "Название" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :type_id, "Категория"%><br>
+    <%= f.select :type_id, options_from_collection_for_select(Type.all, :id, :name) %>
+  </div>
+  <div class="field">
+      <%= f.label :author_id, "Автор"%><br>
+      <%= f.select :author_id, options_from_collection_for_select(Author.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= "Жанры"%><br>
+    <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |item| %>
+        <%= item.label(:"data-value" => item.value) { item.check_box + item.text }%>
+    <% end %>
+  </div>
+    <div class="field">
+      <%= "Места действия"%><br>
+      <%= f.collection_check_boxes(:scene_of_action_ids, SceneOfAction.all, :id, :name) do |item| %>
+          <%= item.label(:"data-value" => item.value) { item.check_box + item.text }%>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :linearity_id, "Линейность сюжета"%><br>
+      <%= f.select :linearity_id, options_from_collection_for_select(Linearity.all, :id, :name) %>
+    </div>
+    <div class="field">
+      <%= "Сюжетные ходы"%><br>
+      <%= f.collection_check_boxes(:plot_ids, Plot.all, :id, :name) do |item| %>
+          <%= item.label(:"data-value" => item.value) { item.check_box + item.text }%>
+      <% end %>
+    </div>
+  <div class="field">
+    <%= f.label :abstract, "Аннотация" %><br>
+    <%= f.text_field :abstract %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Сохранить" %>
+  </div>
+<% end %>

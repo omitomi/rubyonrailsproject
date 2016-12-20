@@ -1,10 +1,10 @@
 <%= form_for(@country) do |f| %>
   <%= render 'shared/error_messages', object: @country %>
   <div class="field">
-    <%= f.label :name, "Имя" %><br>
+    <%= f.label :name, "Название" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="actions">
-    <%= f.submit "Создать" %>
+    <%= f.submit "Сохранить" %>
   </div>
 <% end %>

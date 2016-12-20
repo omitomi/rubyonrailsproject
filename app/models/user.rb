@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-	has_many :microposts, dependent: :destroy
+  has_many :comments
+  has_many :books, through: :comments
 	before_create :create_remember_token
 	before_save { self.email = email.downcase } #принудит Rails переводить в нижний регистр email атрибут перед сохранением пользователя в базу данных
 	validates :name,  presence: true, length: { maximum: 50 }
@@ -15,10 +16,10 @@ class User < ActiveRecord::Base
 	    Digest::SHA1.hexdigest(token.to_s)
 	end
 
-	def feed
+	#def feed
     # Это предварительное решение. См. полную реализацию в "Following users".
-    	Micropost.where("user_id = ?", id)
-    end
+    #	Micropost.where("user_id = ?", id)
+  #end
 
   private
 

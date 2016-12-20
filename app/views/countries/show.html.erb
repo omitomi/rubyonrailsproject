@@ -4,6 +4,8 @@
   <strong>Название:</strong>
   <%= @country.name %>
 </p>
+<% if signed_in? && current_user.admin? %>
+    <%= link_to 'Редактировать', edit_country_path(@country) %> |
+<% end %>
 
-<%= link_to 'Редактировать', edit_country_path(@country) %> |
 <%= link_to 'Назад', countries_path %>

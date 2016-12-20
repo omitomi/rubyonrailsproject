@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @scene_of_action.name %>
+</p>
+<% if signed_in? && current_user.admin? %>
+    <%= link_to 'Редактировать', edit_scene_of_action_path(@scene_of_action) %> |
+<% end %>
+<%= link_to 'Назад', scene_of_actions_path %>

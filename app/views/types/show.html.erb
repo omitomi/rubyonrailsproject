@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @type.name %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @type.description %>
+</p>
+<% if signed_in? && current_user.admin? %>
+    <%= link_to 'Редактировать', edit_type_path(@type) %> |
+<% end %>
+<%= link_to 'Назад', types_path %>

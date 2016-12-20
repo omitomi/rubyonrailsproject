@@ -19,12 +19,12 @@ module SessionsHelper
     @current_user ||= User.find_by(remember_token: remember_token)
   end
 
-  def current_user?(user)
-    user == current_user
-  end
-
   def admin_user
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  def current_user?(user)
+    user == current_user
   end
 
   def signed_in_user

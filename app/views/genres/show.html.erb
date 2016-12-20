@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @genre.name %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @genre.description %>
+</p>
+<% if signed_in? && current_user.admin? %>
+    <%= link_to 'Редактировать', edit_genre_path(@genre) %> |
+<% end %>
+
+<%= link_to 'Назад', genres_path %>

@@ -1,5 +1,5 @@
 class CountriesController < ApplicationController
-  before_action :set_country, only: [:show, :edit, :update, :destroy]
+  before_action :set_country, only: [:edit, :update, :destroy] #:show,
   before_action :admin_user, only: [:new, :edit, :update, :destroy]
   # GET /countries
   # GET /countries.json
@@ -9,8 +9,8 @@ class CountriesController < ApplicationController
 
   # GET /countries/1
   # GET /countries/1.json
-  def show
-  end
+  #def show
+  #end
 
   # GET /countries/new
   def new
@@ -29,7 +29,7 @@ class CountriesController < ApplicationController
       flash[:success] = "Страна сохранена!"
       redirect_to countries_url
     else
-        render 'new'
+      render 'new'
     end
   end
 

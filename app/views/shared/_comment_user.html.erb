@@ -1,0 +1,15 @@
+<li id="comments">
+  <%= link_to gravatar_for(User.find(comment_user.user_id)), User.find(comment_user.user_id) %>
+    <span class="user">
+      <%= link_to User.find(comment_user.user_id).name, User.find(comment_user.user_id) %>
+    </span>
+    <span class="content"><%= comment_user.body %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(comment_user.created_at) %> ago.
+    </span>
+  <% if current_user?(User.find(comment_user.user_id)) %>
+    <%= link_to "delete", comment_user, method: :delete,
+                                     data: { confirm: "Вы уверены?" },
+                                     title: comment_user.body %>
+  <% end %>
+</li>

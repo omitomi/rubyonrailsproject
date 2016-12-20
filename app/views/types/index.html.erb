@@ -1,0 +1,32 @@
+<h1>Список категорий</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Наименование</th>
+      <th></th>
+      <% if signed_in? && current_user.admin? %>
+          <th></th>
+          <th></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @types.each do |type| %>
+      <tr>
+        <td><%= type.name %></td>
+        <td><%= link_to 'Показать', type %></td>
+        <% if signed_in? && current_user.admin? %>
+            <td><%= link_to 'Редактировать', edit_type_path(type) %></td>
+            <td><%= link_to 'Удалить', type, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if signed_in? && current_user.admin? %>
+    <%= link_to 'Создать категорию', new_type_path %>
+<% end %>

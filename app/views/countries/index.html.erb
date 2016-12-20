@@ -14,13 +14,17 @@
     <% @countries.each do |country| %>
       <tr>
         <td><%= country.name %></td>
-        <td><%= link_to 'Редактировать', edit_country_path(country) %></td>
-        <td><%= link_to 'Удалить', country, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% if signed_in? && current_user.admin? %>
+            <td><%= link_to 'Редактировать', edit_country_path(country) %></td>
+            <td><%= link_to 'Удалить', country, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<% if signed_in? && current_user.admin? %>
+    <%= link_to 'Создать страну', new_country_path %>
+<% end %>
 
-<%= link_to 'Создать страну', new_country_path %>

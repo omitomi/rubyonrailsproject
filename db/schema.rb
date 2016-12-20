@@ -11,7 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219161730) do
+ActiveRecord::Schema.define(version: 20161220134349) do
+
+  create_table "authors", force: true do |t|
+    t.string   "name"
+    t.integer  "countries_id"
+    t.string   "biography"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "books", force: true do |t|
+    t.string   "name"
+    t.integer  "type_id"
+    t.string   "abstract"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "linearity_id"
+    t.integer  "author_id"
+  end
+
+  create_table "books_genres", id: false, force: true do |t|
+    t.integer "genre_id"
+    t.integer "book_id"
+  end
+
+  add_index "books_genres", ["book_id"], name: "index_books_genres_on_book_id"
+  add_index "books_genres", ["genre_id"], name: "index_books_genres_on_genre_id"
+
+  create_table "books_plots", id: false, force: true do |t|
+    t.integer "plot_id"
+    t.integer "book_id"
+  end
+
+  add_index "books_plots", ["book_id"], name: "index_books_plots_on_book_id"
+  add_index "books_plots", ["plot_id"], name: "index_books_plots_on_plot_id"
+
+  create_table "books_scene_of_actions", id: false, force: true do |t|
+    t.integer "scene_of_action_id"
+    t.integer "book_id"
+  end
+
+  add_index "books_scene_of_actions", ["book_id"], name: "index_books_scene_of_actions_on_book_id"
+  add_index "books_scene_of_actions", ["scene_of_action_id"], name: "index_books_scene_of_actions_on_scene_of_action_id"
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.text     "body"
+    t.integer  "book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["book_id"], name: "index_comments_on_book_id"
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -19,14 +72,39 @@ ActiveRecord::Schema.define(version: 20161219161730) do
     t.datetime "updated_at"
   end
 
-  create_table "microposts", force: true do |t|
-    t.string   "content"
-    t.integer  "user_id"
+  create_table "genres", force: true do |t|
+    t.string   "name"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+  create_table "linearities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plots", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "scene_of_actions", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+  end
+
+  add_index "types", ["name"], name: "index_types_on_name"
 
   create_table "users", force: true do |t|
     t.string   "name"

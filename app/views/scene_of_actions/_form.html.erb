@@ -1,0 +1,11 @@
+<%= form_for(@scene_of_action) do |f| %>
+  <%= render 'shared/error_messages', object: @scene_of_action %>
+
+    <div class="field">
+      <%= f.label :name, "Наименование" %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Сохранить" %>
+    </div>
+<% end %>

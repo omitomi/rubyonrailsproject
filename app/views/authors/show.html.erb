@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= @author.name %></strong>
+</p>
+
+<p>
+  <strong>Страна:</strong>
+  <%= Country.find(@author.countries_id).name %>
+</p>
+<p>
+  <strong>Биография:</strong>
+  <%= @author.biography %>
+</p>
+<% if signed_in? && current_user.admin? %>
+    <%= link_to 'Редактировать', edit_author_path(@author) %> |
+<% end %>
+
+<%= link_to 'Назад', authors_path %>

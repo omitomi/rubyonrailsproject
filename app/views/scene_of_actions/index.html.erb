@@ -1,0 +1,22 @@
+<h1>Список мест действия</h1>
+
+<table>
+
+  <tbody>
+    <% @scene_of_actions.each do |scene_of_action| %>
+      <tr>
+        <td><%= scene_of_action.name %></td>
+        <% if signed_in? && current_user.admin? %>
+            <td><%= link_to 'Редактировать', edit_scene_of_action_path(scene_of_action) %></td>
+            <td><%= link_to 'Удалить', scene_of_action, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if signed_in? && current_user.admin? %>
+    <%= link_to 'Создать новое место действия', new_scene_of_action_path %> |
+<% end %>
+
